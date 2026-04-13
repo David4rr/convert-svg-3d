@@ -205,7 +205,7 @@ export default function Home() {
   const [filename, setFilename] = useState("");
   const [theme, setTheme] = useState<Theme>("dark");
   const [status, setStatus] = useState(EMPTY);
-
+  const [mounted, setMounted] = useState(false);
 
   const [p, setP] = useState<Params>({
     depth: 10,
@@ -310,8 +310,11 @@ export default function Home() {
   const cls = (l: string, d: string) => (theme === "light" ? l : d);
   
 
-  // If you want to ensure client-side rendering, you can check typeof window
-  if (typeof window === "undefined") return <div className="h-screen w-screen bg-slate-950" />;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return <div className="h-screen w-screen bg-slate-950" />;
 
   return (
     <main className={`h-screen w-screen overflow-hidden ${cls("bg-[#f8fafc] text-slate-900", "bg-slate-950 text-slate-100")}`}>
@@ -434,7 +437,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={`relative h-full overflow-hidden ${cls("bg-gradient-to-br from-slate-50 to-slate-200", "bg-gradient-to-br from-slate-900 to-black")}`}>
+        <section className={`relative h-full overflow-hidden ${cls("bg-linear-to-br from-slate-50 to-slate-200", "bg-linear-to-br from-slate-900 to-black")}`}>
           <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_70%)]" />
           <Canvas shadows camera={{ position: [5, 4, 5], fov: 35 }}>
             <Scene group={group} theme={theme} />
