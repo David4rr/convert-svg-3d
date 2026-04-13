@@ -1,0 +1,5 @@
+- [ ] Fix upside-down orientation by applying stable Y-axis flip/transform
+- [ ] Fix flat appearance by improving depth normalization and adding Z exaggeration control
+- [ ] Add broader customization controls (geometry/material/edge/wireframe toggles)
+- [ ] Refactor UI controls rendering to keep code clean
+- [ ] Run lint and validate critical SVG conversion interactions
